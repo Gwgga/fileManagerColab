@@ -22,8 +22,10 @@ def install_filemanager(bin_dir="/tmp"):
   if is_apache_avail:
     print("calling wget https://ufpr.dl.sourceforge.net/project/extplorer/eXtplorer_2.1.9.zip" )
     get_ipython().system_raw( "wget https://ufpr.dl.sourceforge.net/project/extplorer/eXtplorer_2.1.9.zip" )
+    print("calling mv eXtplorer_2.1.9.zip" )
+    get_ipython().system_raw( "mv eXtplorer_2.1.9.zip /var/www/html/" )
     print("calling unzip eXtplorer_2.1.9.zip" )
-    get_ipython().system_raw( "unzip eXtplorer_2.1.9.zip -d /var/www/html/" )
+    get_ipython().system_raw( "unzip /var/www/html/eXtplorer_2.1.9.zip" )
     print("calling rm /var/www/html/index.html" )
     get_ipython().system_raw( "rm /var/www/html/index.html" )
   else:
