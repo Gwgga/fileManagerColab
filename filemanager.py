@@ -55,8 +55,6 @@ def install_ngrok(bin_dir="/tmp"):
 # tested OK
 def launch_apache2(bin_dir="/tmp", log_dir="/tmp", retval=False):
   install_ngrok(bin_dir)
-    
-  if not tf.gfile.Exists(log_dir):  tf.gfile.MakeDirs(log_dir)
   
   # check status of tensorboard and ngrok
   ps = __shell__("ps -ax")
