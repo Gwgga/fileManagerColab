@@ -23,7 +23,7 @@ def install_filemanager(bin_dir="/tmp"):
     print("calling wget https://ufpr.dl.sourceforge.net/project/extplorer/eXtplorer_2.1.9.zip" )
     get_ipython().system_raw( "wget https://ufpr.dl.sourceforge.net/project/extplorer/eXtplorer_2.1.9.zip" )
     print("calling unzip eXtplorer_2.1.9.zip" )
-    get_ipython().system_raw( "unzip phpFileManager-1.5.zip -d /var/www/html/" )
+    get_ipython().system_raw( "unzip eXtplorer_2.1.9.zip -d /var/www/html/" )
     print("calling rm /var/www/html/index.html" )
     get_ipython().system_raw( "rm /var/www/html/index.html" )
   else:
