@@ -55,7 +55,7 @@ def install_apache(bin_dir="/tmp"):
       print("calling apt-get update -qq 2>&1 > /dev/null..." )
       get_ipython().system_raw( "apt-get update -qq 2>&1 > /dev/null" )
       print("calling apt-get -y -qq install apache2 apache2-doc apache2-utils php7.1 php7.1-mbstring" )
-      get_ipython().system_raw( "apt-get -y -qq install apache2 apache2-doc apache2-utils php7.1 php7.1-mbstring" )
+      get_ipython().system_raw( "apt-get -y -qq install apache2 apache2-doc apache2-utils php7.1 php7.1-mbstring php7.1-curl php7.1-gd" )
       print("calling phpenmod mbstring" )
       get_ipython().system_raw( "phpenmod mbstring" )
       print("calling service apache2 start" )
@@ -123,10 +123,10 @@ def launch_apache(bin_dir="/tmp", log_dir="/tmp", retval=False):
 
   if not is_apache2_running:
     get_ipython().system_raw(
-        'apache2 --logdir {} --host 0.0.0.0 --port 6006 &'
+        'apache2 --logdir {} --host 0.0.0.0 --port 80 &'
         .format(log_dir)
     )
-    is_tensorboard_running = True
+    is_apache2_running = True
     
   if not is_ngrok_running:  
     #    grok should be installed in /tmp/ngrok
@@ -142,4 +142,4 @@ def launch_apache(bin_dir="/tmp", log_dir="/tmp", retval=False):
   apache2_url = retval.json()['tunnels'][0]['public_url'].strip()
   print("apache url=", apache2_url + "?explorer=/content")
   if retval:
-    return apache2_url
+    return
