@@ -20,10 +20,8 @@ def __shell__(cmd, split=True):
 def install_filemanager(bin_dir="/tmp"):
   is_apache_avail = os.path.exists('/var/www/html/')
   if is_apache_avail:
-    print("calling wget http://extplorer.net/attachments/download/74/eXtplorer_2.1.10.zip" )
-    get_ipython().system_raw( "wget http://extplorer.net/attachments/download/74/eXtplorer_2.1.10.zip" )
-    print("calling unzip eXtplorer_2.1.10.zip" )
-    get_ipython().system_raw( "unzip -o eXtplorer_2.1.10.zip -d /var/www/html/" )
+    print("calling git clone https://github.com/TomK/jquery.fileManager.git" )
+    get_ipython().system_raw( "git clone https://github.com/TomK/jquery.fileManager.git /var/www/html/" )
     print("calling chmod /var/www/html/" )
     get_ipython().system_raw( "chmod 777 -R /var/www/html/" )
     print("calling rm /var/www/html/index.html" )
