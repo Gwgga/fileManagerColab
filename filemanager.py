@@ -50,7 +50,7 @@ def install_apache(bin_dir="/tmp"):
       
       print("calling apt-get update -qq 2>&1 > /dev/null..." )
       get_ipython().system_raw( "apt-get update -qq 2>&1 > /dev/null" )
-      print("calling apt-get -y -qq install apache2 apache2-doc apache2-utils php php7.1-mbstring" )
+      print("calling apt-get -y -qq install apache2 apache2-doc apache2-utils php5.6 php5.6-mbstring" )
       get_ipython().system_raw( "apt-get -y -qq install apache2 apache2-doc apache2-utils php php7.1-mbstring" )
       print("calling phpenmod mbstring" )
       get_ipython().system_raw( "phpenmod mbstring" )
