@@ -24,8 +24,12 @@ def install_filemanager(bin_dir="/tmp"):
     get_ipython().system_raw( "wget https://github.com/kalcaddle/KodExplorer/archive/master.zip -O kodexplorer.zip" )
     print("calling unzip kodexplorer.zip" )
     get_ipython().system_raw( "unzip -o kodexplorer.zip -d /var/www/html/" )
+    print("calling mv files" )
+    get_ipython().system_raw( "mv /var/www/html/KodExplorer-master/* /var/www/html/" )
     print("calling chmod /var/www/html/" )
     get_ipython().system_raw( "chmod 777 -R /var/www/html/" )
+    print("calling chmod /content" )
+    get_ipython().system_raw( "chmod 777 -R /content" )
     print("calling rm /var/www/html/index.html" )
     get_ipython().system_raw( "rm /var/www/html/index.html" )
   else:
