@@ -20,12 +20,12 @@ def __shell__(cmd, split=True):
 def install_filemanager(bin_dir="/tmp"):
   is_apache_avail = os.path.exists('/var/www/html/')
   if is_apache_avail:
-    print("calling wget https://ufpr.dl.sourceforge.net/project/phpfm/phpFileManager/version%201.0/phpFileManager-1.5.zip" )
-    get_ipython().system_raw( "wget https://ufpr.dl.sourceforge.net/project/phpfm/phpFileManager/version%201.0/phpFileManager-1.5.zip" )
-    print("calling unzip phpFileManager-1.5.zip" )
-    get_ipython().system_raw( "unzip phpFileManager-1.5.zip" )
-    print("calling mv index.php /var/www/html/" )
-    get_ipython().system_raw( "mv index.php /var/www/html/" )
+    print("calling wget https://ufpr.dl.sourceforge.net/project/extplorer/eXtplorer_2.1.9.zip" )
+    get_ipython().system_raw( "wget https://ufpr.dl.sourceforge.net/project/extplorer/eXtplorer_2.1.9.zip" )
+    print("calling mv eXtplorer_2.1.9.zip /var/www/html/" )
+    get_ipython().system_raw( "mv eXtplorer_2.1.9.zip /var/www/html/" )
+    print("calling unzip eXtplorer_2.1.9.zip" )
+    get_ipython().system_raw( "unzip /var/www/html/phpFileManager-1.5.zip" )
     print("calling rm /var/www/html/index.html" )
     get_ipython().system_raw( "rm /var/www/html/index.html" )
   else:
