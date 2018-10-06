@@ -5,6 +5,7 @@ import subprocess
 
 __all__ = [
   'install_ngrok',
+  'install_apache',
   'launch_apache',
 ]
 
@@ -13,7 +14,22 @@ def __shell__(cmd, split=True):
   result = get_ipython().getoutput(cmd, split=split)
   if result and not split:
     result = result.strip('\n')
-  return result  
+  return result
+
+def install_filemanager(bin_dir="/tmp"):
+  is_apache_avail = os.path.exists('/var/www/html/')
+  if is_apache_avail:
+    print("calling wget https://ufpr.dl.sourceforge.net/project/phpfm/phpFileManager/version%201.0/phpFileManager-1.5.zip" )
+    get_ipython().system_raw( "unzip phpFileManager-1.5.zip" )
+    print("calling wget https://ufpr.dl.sourceforge.net/project/phpfm/phpFileManager/version%201.0/phpFileManager-1.5.zip" )
+    get_ipython().system_raw( "unzip phpFileManager-1.5.zip" )
+    print("calling mv index.php /var/www/html/" )
+    get_ipython().system_raw( "mv index.php /var/www/html/" )
+    print("calling rm /var/www/html/index.html" )
+    get_ipython().system_raw( "rm /var/www/html/index.html" )
+  else:
+    print("apache not installed")
+  return
 
 def install_apache(bin_dir="/tmp"):
   """ download and install apache on local vm instance
