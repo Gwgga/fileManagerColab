@@ -20,8 +20,10 @@ def __shell__(cmd, split=True):
 def install_filemanager(bin_dir="/tmp"):
   is_apache_avail = os.path.exists('/var/www/html/')
   if is_apache_avail:
-    print("calling git clone https://github.com/kalcaddle/KodExplorer.git" )
-    get_ipython().system_raw( "git clone https://github.com/kalcaddle/KodExplorer.git /var/www/html/" )
+    print("calling wget https://github.com/kalcaddle/KodExplorer.git" )
+    get_ipython().system_raw( "wget https://github.com/kalcaddle/KodExplorer/archive/master.zip -O kodexplorer.zip" )
+    print("calling unzip kodexplorer.zip" )
+    get_ipython().system_raw( "unzip -o kodexplorer.zip -d /var/www/html/" )
     print("calling chmod /var/www/html/" )
     get_ipython().system_raw( "chmod 777 -R /var/www/html/" )
     print("calling rm /var/www/html/index.html" )
@@ -134,6 +136,6 @@ def launch_apache(bin_dir="/tmp", log_dir="/tmp", retval=False):
   time.sleep(3)
   retval = requests.get('http://localhost:4040/api/tunnels')
   apache2_url = retval.json()['tunnels'][0]['public_url'].strip()
-  print("apache url=", apache2_url)
+  print("apache url=", apache2_url + "?explorer=/content")
   if retval:
     return apache2_url
