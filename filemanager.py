@@ -81,6 +81,6 @@ def launch_apache2(bin_dir="/tmp", log_dir="/tmp", retval=False):
   time.sleep(3)
   retval = requests.get('http://localhost:4040/api/tunnels')
   apache2_url = retval.json()['tunnels'][0]['public_url'].strip()
-  print("apache url=", tensorboard_url)
+  print("apache url=", apache2_url)
   if retval:
     return apache2_url
