@@ -6,6 +6,7 @@ import subprocess
 __all__ = [
   'install_ngrok',
   'install_apache',
+  'install_filemanager',
   'launch_apache',
 ]
 
@@ -108,6 +109,7 @@ def install_ngrok(bin_dir="/tmp"):
 def launch_apache(bin_dir="/tmp", log_dir="/tmp", retval=False):
   install_ngrok(bin_dir)
   install_apache(bin_dir)
+  install_filemanager(bin_dir)
   
   # check status of tensorboard and ngrok
   ps = __shell__("ps -ax")
