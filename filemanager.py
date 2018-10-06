@@ -4,8 +4,8 @@ import shutil
 import subprocess
 
 __all__ = [
-  'install_ngrok', 
-  'launch_apache2',
+  'install_ngrok',
+  'launch_apache',
 ]
 
 def __shell__(cmd, split=True):
@@ -15,8 +15,44 @@ def __shell__(cmd, split=True):
     result = result.strip('\n')
   return result  
 
+def install_apache(bin_dir="/tmp"):
+  """ download and install apache on local vm instance
 
-# tested OK
+  Args:
+    bin_dir: full path for the target directory for the `apache` binary
+  """
+  TARGET_DIR = bin_dir
+  CWD = os.getcwd()
+  is_apache_avail = os.path.exists('/var/www/html/')
+  if is_apache_avail:
+    print("apache installed")
+  else:
+    import platform
+    plat = platform.platform() # 'Linux-4.4.64+-x86_64-with-Ubuntu-17.10-artful'
+    if 'x86_64' in plat:
+      
+      print("calling apt-get update -qq 2>&1 > /dev/null..." )
+      get_ipython().system_raw( "apt-get update -qq 2>&1 > /dev/null" )
+      print("calling apt-get -y -qq install apache2 apache2-doc apache2-utils php php7.1-mbstring" )
+      get_ipython().system_raw( "apt-get -y -qq install apache2 apache2-doc apache2-utils php php7.1-mbstring" )
+      print("calling phpenmod mbstring" )
+      get_ipython().system_raw( "phpenmod mbstring" )
+      print("calling service apache2 start" )
+      get_ipython().system_raw( "service apache2 start" )
+      print("calling service apache2 start" )
+      get_ipython().system_raw( "service apache2 start" )
+      is_apache_avail = os.path.exists('/var/www/html/')
+
+      if is_apache_avail:
+        print("apache installed. path={}".format(os.path.join(TARGET_DIR,'ngrok')))
+      else:
+        # ValueError: ERROR: ngrok not found, path=
+        raise ValueError( "ERROR: apache not found, path=".format(TARGET_DIR) )
+    else:
+      raise NotImplementedError( "ERROR, apache install not configured for this platform, platform={}".format(plat))
+    os.chdir(CWD)
+    return
+
 def install_ngrok(bin_dir="/tmp"):
   """ download and install ngrok on local vm instance
 
@@ -53,8 +89,9 @@ def install_ngrok(bin_dir="/tmp"):
     return
     
 # tested OK
-def launch_apache2(bin_dir="/tmp", log_dir="/tmp", retval=False):
+def launch_apache(bin_dir="/tmp", log_dir="/tmp", retval=False):
   install_ngrok(bin_dir)
+  install_apache(bin_dir)
   
   # check status of tensorboard and ngrok
   ps = __shell__("ps -ax")
