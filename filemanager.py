@@ -36,6 +36,8 @@ def install_filemanager(bin_dir="/tmp"):
     get_ipython().system_raw( "wget https://raw.githubusercontent.com/Gwgga/fileManagerColab/master/000-default.conf -O 000-default.conf" )
     print("calling mv DocumentRoot" )
     get_ipython().system_raw( "mv 000-default.conf /etc/apache2/sites-available/" )
+    print("calling service apache2 restart" )
+    get_ipython().system_raw( "service apache2 restart" )
     #print("calling rm /var/www/html/index.html" )
     #get_ipython().system_raw( "rm /var/www/html/index.html" )
   else:
